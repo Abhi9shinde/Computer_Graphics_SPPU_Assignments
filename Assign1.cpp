@@ -164,113 +164,180 @@ void DD_thick(void)
     }
     glFlush();
 }
-/******************************************BRESENHAM LINE ALGORITHM******************************************/
+/******BRESENHAM LINE ALGORITHM******/
 void bre_simple(void)
 {
-    int x1, y1, x2, y2, dx, dy;
+    int x1, y1, x2, y2;
     x1 = 0;
     y1 = 0;
     x2 = 200,
     y2 = 200;
-    dx = abs(x2 - x1);
-    dy = abs(y2 - y1);
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int incX, incY;
+
+    if (x1 < x2)
+        incX = 1;
+    else
+        incX = -1;
+
+    if (y1 < y2)
+        incY = 1;
+    else
+        incY = -1;
+
     int x = x1;
     int y = y1;
-    int i = 1;
-    int e = (2 * dy) - dx;
-    while (i <= dx)
+    int p = 2 * dy - dx;
+
+    while (x != x2)
     {
         glBegin(GL_POINTS);
         glVertex2d(x, y);
         glEnd();
-        if (e >= 0)
+
+        if (p < 0)
+            p = p + 2 * dy;
+        else
         {
-            y += 1;
-            e = e - (2 * dx);
+            p = p + 2 * dy - 2 * dx;
+            y = y + incY;
         }
-        x += 1;
-        e = e + (2 * dy);
-        i++;
+        x = x + incX;
     }
     glFlush();
 }
 
 void bre_dotted(void)
 {
-    int x1, y1, x2, y2, dx, dy;
+    int x1, y1, x2, y2;
     x1 = 0;
     y1 = 0;
-    x2 = 200,
+    x2 = -200,
     y2 = 200;
-    dx = abs(x2 - x1);
-    dy = abs(y2 - y1);
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int incX, incY;
+
+    if (x1 < x2)
+        incX = 1;
+    else
+        incX = -1;
+
+    if (y1 < y2)
+        incY = 1;
+    else
+        incY = -1;
+
     int x = x1;
     int y = y1;
-    int i = 1;
-    int e = (2 * dy) - dx;
-    while (i <= dx)
+    int p = 2 * dy - dx;
+
+    while (x != x2)
     {
-        if (i % 2 != 0)
+        if (x % 3 != 0)
         {
             glBegin(GL_POINTS); // Begin drawing points
             glVertex2d(x, y);   // Draw the point
             glEnd();            // End drawing points
         }
+        if (p < 0)
+            p = p + 2 * dy;
         else
         {
-            if (e >= 0)
-            {
-                y += 1;
-                e = e - (2 * dx);
-            }
-            x += 1;
-            e = e + (2 * dy);
+            p = p + 2 * dy - 2 * dx;
+            y = y + incY;
         }
-        i++;
+        x = x + incX;
     }
     glFlush();
 }
+
+void bre_dashed(void)
+{
+    int x1, y1, x2, y2;
+    x1 = 0;
+    y1 = 0;
+    x2 = -200,
+    y2 = -200;
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int incX, incY;
+
+    if (x1 < x2)
+        incX = 1;
+    else
+        incX = -1;
+
+    if (y1 < y2)
+        incY = 1;
+    else
+        incY = -1;
+
+    int x = x1;
+    int y = y1;
+    int p = 2 * dy - dx;
+
+    while (x != x2)
+    {
+        if (x % 10 != 0)
+        {
+            glBegin(GL_POINTS); // Begin drawing points
+            glVertex2d(x, y);   // Draw the point
+            glEnd();            // End drawing points
+        }
+        if (p < 0)
+            p = p + 2 * dy;
+        else
+        {
+            p = p + 2 * dy - 2 * dx;
+            y = y + incY;
+        }
+        x = x + incX;
+    }
+    glFlush();
+}
+
 void bre_thick(void)
 {
     glPointSize(3.0);
-    int x1, y1, x2, y2, dx, dy, S1, S2;
+    int x1, y1, x2, y2;
     x1 = 0;
     y1 = 0;
     x2 = 200,
     y2 = -200;
-    dx = (x2 - x1);
-    dy = (y2 - y1);
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+    int incX, incY;
+
+    if (x1 < x2)
+        incX = 1;
+    else
+        incX = -1;
+
+    if (y1 < y2)
+        incY = 1;
+    else
+        incY = -1;
+
     int x = x1;
     int y = y1;
-    int i = 1;
-    int e = (2 * abs(dy)) - abs(dx);
-    while (x1 < x2)
+    int p = 2 * dy - dx;
+
+    while (x != x2)
     {
         glBegin(GL_POINTS);
         glVertex2d(x, y);
         glEnd();
-        if (e >= 0)
-        {
-            if (dy < 0)
-            {
-                y -= 1;
-            }
-            else
-            {
-                y++;
-            }
-            e = e - (2 * dx);
-        }
-        if (dx < 0)
-        {
-            x -= 1;
-        }
+
+        if (p < 0)
+            p = p + 2 * dy;
         else
         {
-            x++;
+            p = p + 2 * dy - 2 * dx;
+            y = y + incY;
         }
-        e = e + (2 * dy);
-        i++;
+        x = x + incX;
     }
     glFlush();
 }
@@ -312,12 +379,12 @@ void BREmenu(int j)
     case 1:
         bre_simple();
         break;
-    // case 2:
-    //     DD_dotted();
-    //     break;
-    // case 3:
-    //     DD_dashed();
-    //     break;
+    case 2:
+        bre_dotted();
+        break;
+    case 3:
+        bre_dashed();
+        break;
     case 4:
         bre_thick();
         break;
@@ -333,8 +400,8 @@ int main(int argc, char **argv)
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(1200, 800);
     glutCreateWindow("Line Drawing Algorithm");
-
     glutDisplayFunc(display);
+
     submain_menu1 = glutCreateMenu(DDAmenu);
     glutAddMenuEntry("1.DDA Simple Line", 1);
     glutAddMenuEntry("2.DDA Dotted Line", 2);
