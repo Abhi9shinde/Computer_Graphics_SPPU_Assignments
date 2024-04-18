@@ -94,12 +94,167 @@ void scaling()
 }
 void shearing()
 {
+    float shx, shy;
+    shx = 1;
+    shy = 1;
+    ABC1[0][0] = x1;
+    ABC1[1][1] = y2;
+
+    ABC1[2][0] = x3;
+    ABC1[2][1] = y3;
+
+    ABC1[0][0] = abs(ABC1[0][0] + shx * y1);
+    ABC1[0][1] = abs(ABC1[0][1] + shy * x1);
+
+    ABC1[1][0] = abs(ABC1[1][0] + shx * y2);
+    ABC1[1][1] = abs(ABC1[1][1] + shy * x2);
+
+    ABC1[2][0] = abs(ABC1[2][0] + shx * y3);
+    ABC1[2][1] = abs(ABC1[2][1] + shy * x3);
+
+    glColor3f(1.0, 1.0, 0.0);
+    glBegin(GL_LINE_LOOP);
+    glVertex2d(ABC1[0][0], ABC1[0][1]);
+    glVertex2d(ABC1[1][0], ABC1[1][1]);
+    glVertex2d(ABC1[2][0], ABC1[2][1]);
+    glEnd();
+    glFlush();
 }
 void reflection()
 {
+    // // ABOUT X-AXIS
+    // ABC1[0][0] = x1;
+    // ABC1[0][1] = y1;
+
+    // ABC1[1][0] = x2;
+    // ABC1[1][1] = y2;
+
+    // ABC1[2][0] = x3;
+    // ABC1[2][1] = y3;
+
+    // ABC1[0][0] = x1;
+    // ABC1[0][1] = -y1;
+
+    // ABC1[1][0] = x2;
+    // ABC1[1][1] = -y2;
+
+    // ABC1[2][0] = x3;
+    // ABC1[2][1] = -y3;
+    // glColor3f(1.0, 1.0, 0.0);
+    // glBegin(GL_LINE_LOOP);
+    // glVertex2d(ABC1[0][0], ABC1[0][1]);
+    // glVertex2d(ABC1[1][0], ABC1[1][1]);
+    // glVertex2d(ABC1[2][0], ABC1[2][1]);
+    // glEnd();
+    // glFlush();
+
+    // // ABOUT Y-AXIS
+    // ABC1[0][0] = x1;
+    // ABC1[0][1] = y1;
+
+    // ABC1[1][0] = x2;
+    // ABC1[1][1] = y2;
+
+    // ABC1[2][0] = x3;
+    // ABC1[2][1] = y3;
+
+    // ABC1[0][0] = -x1;
+    // ABC1[0][1] = y1;
+
+    // ABC1[1][0] = -x2;
+    // ABC1[1][1] = y2;
+
+    // ABC1[2][0] = -x3;
+    // ABC1[2][1] = y3;
+    // glColor3f(1.0, 1.0, 0.0);
+    // glBegin(GL_LINE_LOOP);
+    // glVertex2d(ABC1[0][0], ABC1[0][1]);
+    // glVertex2d(ABC1[1][0], ABC1[1][1]);
+    // glVertex2d(ABC1[2][0], ABC1[2][1]);
+    // glEnd();
+    // glFlush();
+
+    // // ABOUT x=y line
+    // ABC1[0][0] = x1;
+    // ABC1[0][1] = y1;
+
+    // ABC1[1][0] = x2;
+    // ABC1[1][1] = y2;
+
+    // ABC1[2][0] = x3;
+    // ABC1[2][1] = y3;
+
+    // ABC1[0][0] = y1;
+    // ABC1[0][1] = x1;
+
+    // ABC1[1][0] = y2;
+    // ABC1[1][1] = x2;
+
+    // ABC1[2][0] = y3;
+    // ABC1[2][1] = x3;
+    // glColor3f(1.0, 1.0, 0.0);
+    // glBegin(GL_LINE_LOOP);
+    // glVertex2d(ABC1[0][0], ABC1[0][1]);
+    // glVertex2d(ABC1[1][0], ABC1[1][1]);
+    // glVertex2d(ABC1[2][0], ABC1[2][1]);
+    // glEnd();
+    // glFlush();
+
+    // ABOUT origin
+    ABC1[0][0] = x1;
+    ABC1[0][1] = y1;
+
+    ABC1[1][0] = x2;
+    ABC1[1][1] = y2;
+
+    ABC1[2][0] = x3;
+    ABC1[2][1] = y3;
+
+    ABC1[0][0] = -x1;
+    ABC1[0][1] = -y1;
+
+    ABC1[1][0] = -x2;
+    ABC1[1][1] = -y2;
+
+    ABC1[2][0] = -x3;
+    ABC1[2][1] = -y3;
+    glColor3f(1.0, 1.0, 0.0);
+    glBegin(GL_LINE_LOOP);
+    glVertex2d(ABC1[0][0], ABC1[0][1]);
+    glVertex2d(ABC1[1][0], ABC1[1][1]);
+    glVertex2d(ABC1[2][0], ABC1[2][1]);
+    glEnd();
+    glFlush();
 }
 void rotation()
 {
+    float x, angle;
+    angle = 45;
+    x = 0.01745 * angle;
+    ABC1[0][0] = x1;
+    ABC1[0][1] = y1;
+
+    ABC1[1][0] = x2;
+    ABC1[1][1] = y2;
+
+    ABC1[2][0] = x3;
+    ABC1[2][1] = y3;
+
+    ABC1[0][0] = x1 * cos(x) - y1 * sin(x);
+    ABC1[1][0] = x2 * cos(x) - y2 * sin(x);
+    ABC1[2][0] = x3 * cos(x) - y3 * sin(x);
+
+    ABC1[0][1] = x1 * sin(x) + y1 * cos(x);
+    ABC1[1][1] = x2 * sin(x) + y2 * cos(x);
+    ABC1[2][1] = x3 * sin(x) + y3 * cos(x);
+
+    glColor3f(1.0, 1.0, 0.0);
+    glBegin(GL_LINE_LOOP);
+    glVertex2d(ABC1[0][0], ABC1[0][1]);
+    glVertex2d(ABC1[1][0], ABC1[1][1]);
+    glVertex2d(ABC1[2][0], ABC1[2][1]);
+    glEnd();
+    glFlush();
 }
 void dis_ori()
 {
@@ -150,7 +305,7 @@ int main(int argc, char *argv[])
     myInit();
     glutDisplayFunc(display);
 
-    submain_menu = glutCreateMenu(menu);
+    main_menu = glutCreateMenu(menu);
     glutAddMenuEntry("***MENU***", 0);
     glutAddMenuEntry("Translation", 1);
     glutAddMenuEntry("Rotation", 2);
@@ -158,5 +313,6 @@ int main(int argc, char *argv[])
     glutAddMenuEntry("Shearing", 4);
     glutAddMenuEntry("Scaling", 5);
     glutAttachMenu(GLUT_RIGHT_BUTTON);
+
     glutMainLoop();
 }
