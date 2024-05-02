@@ -23,8 +23,8 @@ void myInit(void)
 }
 void display(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glColor3f(1.0f, 1.0f, 1.0f);
+    // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // glColor3f(1.0f, 1.0f, 1.0f);
     glBegin(GL_LINES);
     glVertex2d(1000, 0);
     glVertex2d(-1000, 0);
@@ -95,31 +95,28 @@ void scaling()
 void shearing()
 {
     float shx, shy;
-    shx = 1;
-    shy = 1;
-    ABC1[0][0] = x1;
-    ABC1[1][1] = y2;
+    shx = 1; // Shear factor along x-axis
+    shy = 1; // Shear factor along y-axis
 
-    ABC1[2][0] = x3;
-    ABC1[2][1] = y3;
+    // Apply shear transformation to each point
+    float new_x1 = x1 + shx * y1;
+    float new_y1 = y1 + shy * x1;
 
-    ABC1[0][0] = abs(ABC1[0][0] + shx * y1);
-    ABC1[0][1] = abs(ABC1[0][1] + shy * x1);
+    float new_x2 = x2 + shx * y2;
+    float new_y2 = y2 + shy * x2;
 
-    ABC1[1][0] = abs(ABC1[1][0] + shx * y2);
-    ABC1[1][1] = abs(ABC1[1][1] + shy * x2);
-
-    ABC1[2][0] = abs(ABC1[2][0] + shx * y3);
-    ABC1[2][1] = abs(ABC1[2][1] + shy * x3);
+    float new_x3 = x3 + shx * y3;
+    float new_y3 = y3 + shy * x3;
 
     glColor3f(1.0, 1.0, 0.0);
     glBegin(GL_LINE_LOOP);
-    glVertex2d(ABC1[0][0], ABC1[0][1]);
-    glVertex2d(ABC1[1][0], ABC1[1][1]);
-    glVertex2d(ABC1[2][0], ABC1[2][1]);
+    glVertex2d(new_x1, new_y1);
+    glVertex2d(new_x2, new_y2);
+    glVertex2d(new_x3, new_y3);
     glEnd();
     glFlush();
 }
+
 void reflection()
 {
     // // ABOUT X-AXIS

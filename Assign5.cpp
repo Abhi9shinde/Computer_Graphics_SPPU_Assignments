@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 using namespace std;
 static int mainmenu;
-double Xmin, Ymin, Xmax, Ymax, x1, y1, x2, y2;
+double Xmin, Ymin, Xmax, Ymax, x1, y1, x2, y2, Xvmin, Yvmin, Xvmax, Yvmax;
 int temp, done, accept, x, y;
 const int L = 8, R = 4, B = 2, T = 1;
 
@@ -60,12 +60,12 @@ void LineClip(double x1, double y1, double x2, double y2)
             if (temp & T)
             {
                 y = Ymax;
-                x = x1 + (Ymax - y1) / M;
+                x = (Ymax - y1) / M + x1;
             }
             else if (temp & B)
             {
                 y = Ymin;
-                x = x1 + (Ymin - y1) / M;
+                x = (Ymin - y1) / M + x1;
             }
             else if (temp & R)
             {
@@ -94,10 +94,23 @@ void LineClip(double x1, double y1, double x2, double y2)
     } while (done == 0);
     if (accept)
     {
+        double sx = (Xvmax - Xvmin) / (Xmax - Xmin);
+        double sy = (Yvmax - Yvmin) / (Ymax - Ymin);
+        double vx1 = Xvmin + (x1 - Xmin) * sx;
+        double vy1 = Yvmin + (y1 - Ymin) * sy;
+        double vx2 = Xvmax + (x2 - Xmax) * sx;
+        double vy2 = Yvmax + (y2 - Ymax) * sx;
+        glColor3f(1.0, 1.0, 1.0);
+        glBegin(GL_LINE_LOOP);
+        glVertex2d(Xvmin, Yvmin);
+        glVertex2d(Xvmin, Yvmax);
+        glVertex2d(Xvmax, Yvmax);
+        glVertex2d(Xvmax, Yvmin);
+        glEnd();
         glColor3f(0.0, 0.0, 1.0);
         glBegin(GL_LINES);
-        glVertex2d(x1, y1);
-        glVertex2d(x2, y2);
+        glVertex2d(vx1, vy1);
+        glVertex2d(vx2, vy2);
         glEnd();
     }
 }
@@ -138,21 +151,24 @@ void cmenu(int x)
 
 int main(int argc, char **argv)
 {
-    Xmin = 400;
-    Ymin = 400;
-    Xmax = 600;
-    Ymax = 700;
+    Xmin = 50;
+    Ymin = 50;
+    Xmax = 300;
+    Ymax = 300;
+    Xvmin = 250;
+    Yvmin = 250;
+    Xvmax = 500;
+    Yvmax = 500;
 
-    x1 = 250;
-    y1 = 310;
-    x2 = 700;
-    y2 = 800;
+    x1 = 40;
+    y1 = 100;
+    x2 = 310;
+    y2 = 250;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutCreateWindow("Cohen Sutherland");
     glutInitWindowSize(1000, 1000);
     glutInitWindowPosition(0, 0);
-
+    glutCreateWindow("Cohen Sutherland");
     mainmenu = glutCreateMenu(cmenu);
     glutDisplayFunc(display);
     glutAddMenuEntry("****MENU*****", 0);
