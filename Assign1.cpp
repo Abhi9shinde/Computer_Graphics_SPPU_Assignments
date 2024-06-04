@@ -9,7 +9,7 @@ void Init(void)
     glPointSize(1.0);
     gluOrtho2D(-600, 600, -400, 400);
 }
-void DDA_simple();
+void DDA_simple(); 
 void DDA_dotted();
 void DDA_dashed();
 void DDA_thick();
