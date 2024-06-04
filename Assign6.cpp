@@ -9,7 +9,7 @@ void myInit();
 void display(void);
 void dis_ori();
 void translation();
-void rotation();
+void rotation(); 
 void shearing();
 void reflection();
 void scaling();
