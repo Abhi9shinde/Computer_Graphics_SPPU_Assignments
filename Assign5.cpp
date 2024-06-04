@@ -14,7 +14,7 @@ int regcode(double x, double y)
         code = L;
     }
     if (x > Xmax)
-    {
+    { 
         code = R;
     }
     if (y < Ymin)
