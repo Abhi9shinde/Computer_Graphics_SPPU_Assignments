@@ -1,37 +1,60 @@
-# Assignment 1:
-Implement DDA and Bresenham line drawing algorithm to draw (2 week, 4 hrs)
-1. Simple line
-2. Dotted line
-3. Dashed line
-4. Solid line using mouse interface.
-   <br>
-Divide the screen in four quadrants with center as (0, 0). The line should
-work for all the slopes +ve, -ve, >1,<1
+## Assignment 1: Line Drawing Algorithms 
 
-# Assignment 2:
-Implement Bresenham circle drawing algorithm to draw any object. The object should be displayed in
-all the quadrants with respect to center and radius
+Implement **DDA** and **Bresenham** line drawing algorithms to draw:
+1. **Simple line**
+2. **Dotted line**
+3. **Dashed line**
+4. **Solid line** using mouse interface.
 
-# Assignment 3:
-Implement the following polygon filling methods 
-1. Flood fill / Seed fill
-2. Boundary fill <br>
-using mouse click, keyboard interface and menu driven programming
+### Requirements:
+- Divide the screen into four quadrants with the center at (0, 0).
+- The line should work for all slopes: +ve, -ve, >1, <1.
 
-# Assignment 5:
-Implement Cohen Suterland polygon clipping method to clip the polygon with respect the viewport
-and window. Use mouse click, keyboard interface
+---
 
-# Assignment 6:
-Implement following 2D transformations on the object with respect to axis 
-1. Scaling
-2. Rotation about arbitrary point
-3. Reflection
+## Assignment 2: Circle Drawing Algorithm 
 
-# Assignment 7:
-Generate fractal patterns using 
-1. Bezier 
-2. Koch Curve
+Implement **Bresenham's circle drawing algorithm** to draw any object. The object should be displayed in all quadrants with respect to the center and radius.
 
-# Assignment 8:
-Implement animation principles for any object
+---
+
+## Assignment 3: Polygon Filling Methods 
+
+Implement the following polygon filling methods:
+1. **Flood fill / Seed fill**
+2. **Boundary fill**
+
+### Requirements:
+- Use mouse click, keyboard interface, and menu-driven programming.
+
+---
+
+## Assignment 5: Polygon Clipping 
+
+Implement **Cohen-Sutherland polygon clipping method** to clip the polygon with respect to the viewport and window.
+
+### Requirements:
+- Use mouse click and keyboard interface.
+
+---
+
+## Assignment 6: 2D Transformations 
+
+Implement the following 2D transformations on the object with respect to the axis:
+1. **Scaling**
+2. **Rotation about an arbitrary point**
+3. **Reflection**
+
+---
+
+## Assignment 7: Fractal Patterns 
+
+Generate fractal patterns using:
+1. **Bezier curves**
+2. **Koch curve**
+
+---
+
+## Assignment 8: Animation Principles 
+
+Implement animation principles for any object.
