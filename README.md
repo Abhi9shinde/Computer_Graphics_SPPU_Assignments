@@ -18,7 +18,7 @@ Implement the following polygon filling methods
 2. Boundary fill <br>
 using mouse click, keyboard interface and menu driven programming
 
-# Assignment 4:
+# Assignment 5:
 Implement Cohen Suterland polygon clipping method to clip the polygon with respect the viewport
 and window. Use mouse click, keyboard interface
 
