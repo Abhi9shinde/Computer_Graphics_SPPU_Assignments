@@ -22,16 +22,16 @@ using mouse click, keyboard interface and menu driven programming
 Implement Cohen Suterland polygon clipping method to clip the polygon with respect the viewport
 and window. Use mouse click, keyboard interface
 
-# Assignment 5:
+# Assignment 6:
 Implement following 2D transformations on the object with respect to axis 
 1. Scaling
 2. Rotation about arbitrary point
 3. Reflection
 
-# Assignment 6:
+# Assignment 7:
 Generate fractal patterns using 
 1. Bezier 
 2. Koch Curve
 
-# Assignment 7:
+# Assignment 8:
 Implement animation principles for any object
